@@ -35,7 +35,7 @@ DOCKER_IMAGE_NAME="archlinux:$SNAPSHOT"
 	SigLevel    = Required DatabaseOptional
 	LocalFileSigLevel = Optional
 
-	NoExtract = usr/lib/systemd/system/*NoExtract=usr/lib/systemd/system/*
+	NoExtract = usr/lib/systemd/system/*
 	NoExtract = usr/share/locale/* !usr/share/locale/en_US !usr/share/locale/locale.alias
 
 	IgnorePkg = cryptsetup
