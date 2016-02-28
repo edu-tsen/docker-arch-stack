@@ -36,7 +36,11 @@ DOCKER_IMAGE_NAME="archlinux:$SNAPSHOT"
 	LocalFileSigLevel = Optional
 
 	NoExtract = usr/lib/systemd/system/*
+	NoExtract = usr/share/doc/*
 	NoExtract = usr/share/locale/* !usr/share/locale/en_US !usr/share/locale/locale.alias
+	NoExtract = usr/share/info/*
+	NoExtract = usr/share/man/*
+	NoExtract = /usr/share/perl5/core_perl/pod/*/usr/share/perl5/core_perl/pod/*
 
 	IgnorePkg = cryptsetup
 	IgnorePkg = device-mapper
@@ -89,7 +93,6 @@ expect <<EOF
 	}
 EOF
 
-arch-chroot $ROOTFS /bin/sh -c 'rm -r /usr/share/man/*'
 arch-chroot $ROOTFS /bin/sh -c "haveged -w 1024; pacman-key --init; pkill haveged; pacman -Rs --noconfirm haveged; pacman-key --populate $ARCH_KEYRING; pkill gpg-agent"
 arch-chroot $ROOTFS /bin/sh -c "ln -s /usr/share/zoneinfo/UTC /etc/localtime"
 echo 'en_US.UTF-8 UTF-8' > $ROOTFS/etc/locale.gen
