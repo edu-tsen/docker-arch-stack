@@ -1,6 +1,7 @@
 FROM archlinux:2016-02-26
 
-# archlinux uses by default uid=88 and gid=88 for postgres
+RUN groupadd -r postgres \
+ && useradd -r -d /var/lib/postgres -s /bin/false -g postgres postgres 
 
 RUN pacman -S postgresql --noconfirm \
  && pacman -Scc --noconfirm

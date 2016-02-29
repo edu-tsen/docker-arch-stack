@@ -17,7 +17,7 @@ if [ "$1" = 'postgres' ]; then
 
   # look specifically for PG_VERSION, as it is expected in the DB dir
 	if [ ! -s "$PGDATA/PG_VERSION" ]; then
-		su postgres <<-EOC
+		su postgres -s /bin/sh <<-EOC
       initdb
 		EOC
 
@@ -50,7 +50,7 @@ if [ "$1" = 'postgres' ]; then
 
 		# internal start of server in order to allow set-up using psql-client
 		# does not listen on TCP/IP and waits until start finishes
-    su postgres <<-EOC
+    su postgres -s /bin/sh <<-EOC
       pg_ctl -o "-c listen_addresses=''" -w start
 		EOC
 
@@ -90,7 +90,7 @@ if [ "$1" = 'postgres' ]; then
 			echo
 		done
 
-		su postgres <<-EOC
+		su postgres -s /bin/sh <<-EOC
       pg_ctl -m fast -w stop
 		EOC
 
@@ -101,7 +101,7 @@ if [ "$1" = 'postgres' ]; then
 		echo
 	fi
 
-	exec su postgres -c "$@"
+	exec su postgres -s /bin/sh -c "$@"
 fi
 
 exec "$@"
