@@ -1,6 +1,6 @@
 FROM archlinux:2016-02-26
 
-# archlinux uses by default id=88 and gid=88 for postgres
+# archlinux uses by default uid=88 and gid=88 for postgres
 
 RUN pacman -S postgresql --noconfirm \
  && pacman -Scc --noconfirm
