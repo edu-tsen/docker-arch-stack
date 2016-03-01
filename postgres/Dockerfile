@@ -1,13 +1,10 @@
 FROM archlinux:2016-02-26
 
 RUN groupadd -r postgres \
- && useradd -r -d /var/lib/postgres -s /bin/false -g postgres postgres 
+ && useradd -r -d /var/lib/postgres -s /bin/false -g postgres postgres
 
 RUN pacman -S postgresql --noconfirm \
  && pacman -Scc --noconfirm
-
-#RUN mkdir -p /run/postgresql \
-# && chown postgres:postgres /run/postgresql
 
 RUN mkdir /etc/initdb.d
 
