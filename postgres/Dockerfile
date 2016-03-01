@@ -4,7 +4,7 @@ RUN groupadd -r postgres \
  && useradd -r -d /var/lib/postgres -s /bin/false -g postgres postgres
 
 RUN pacman -S postgresql --noconfirm \
- && pacman -Scc --noconfirm
+ && paccache -rk0
 
 RUN mkdir /etc/initdb.d
 

@@ -4,7 +4,7 @@ RUN groupadd -r redis \
  && useradd -r -d /var/lib/redis -s /bin/false -g redis redis
 
 RUN pacman -S redis --noconfirm \
- && pacman -Scc --noconfirm
+ && paccache -rk0
 
 RUN mkdir -p /var/lib/redis/data \
  && chown redis:redis /var/lib/redis/data
