@@ -77,7 +77,7 @@ if [ "$1" = 'postgres' ]; then
 		echo
 
 		echo
-		for f in /docker-entrypoint-initdb.d/*; do
+		for f in /etc/initdb.d/*; do
 			case "$f" in
 				*.sh)  echo "$0: running $f"; . "$f" ;;
 				*.sql)
