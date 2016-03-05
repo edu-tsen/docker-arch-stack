@@ -18,8 +18,7 @@ RUN pacman -S base-devel --asdeps --needed --noconfirm \
  && su bin -s /bin/sh -c "cd /build; makepkg -si --noconfirm" \
  && cd .. \
  && rm -rf ruby2.1-bundler ruby2.1-bundler.tar.gz \
- && pacman -Qttdq | xargs pacman -Rs --noconfirm \
- && rm /etc/sudoers.pacsave \
+ && pacman -Qttdq | xargs pacman -Rns --noconfirm \
  && paccache -rk0
 
-CMD ["irb-2.1"]
+CMD ["irb-2.1 "]
